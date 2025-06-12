@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박상우의 간절한 프로필</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 커스텀 스크롤바 (선택 사항) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0047AB;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #003a8a;
+        }
+
+        /* 텍스트 강조 애니메이션 (똥꼬쇼 하이라이트) */
+        @keyframes highlightPulse {
+            0% { background-color: transparent; transform: scale(1); }
+            50% { background-color: #FFD700; transform: scale(1.03); } /* 옐로 */
+            100% { background-color: transparent; transform: scale(1); }
+        }
+
+        .highlight {
+            animation: highlightPulse 2s infinite ease-in-out;
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block; /* 텍스트 크기에 맞춰 배경 적용 */
+            font-weight: bold;
+            color: #0047AB; /* 코발트 블루 */
+        }
+
+        /* 교육 사항 항목 강조 */
+        @keyframes highlightEdu {
+            0%, 100% { transform: translateY(0); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+            50% { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        }
+        .highlight-edu-item {
+            animation: highlightEdu 1.5s infinite ease-in-out;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-edu-item::before {
+            content: '⭐'; /* 별 이모지 추가 */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.5em;
+            color: #FFD700;
+            animation: bounce 1s infinite alternate; /* 별이 통통 튀는 애니메이션 */
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* 연락처 깜빡임 */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .blink-text {
+            animation: blink 1s infinite step-end;
+        }
+        .contact-cta {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .contact-cta::after {
+            content: '🚨🚨🚨'; /* 경고 이모지 */
+            position: absolute;
+            top: -5px;
+            right: -30px;
+            font-size: 1.2em;
+            animation: slideIn 0.8s ease-out infinite alternate;
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50 leading-relaxed">
+
+    <nav id="navbar" class="sticky top-0 z-50 bg-blue-800 text-white shadow-lg py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#top" class="text-xl font-bold hover:text-yellow-400 transition duration-300">박상우</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:text-yellow-400 transition duration-300 relative nav-link">
+                    절박한 자기소개
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                </a>
+                <a href="#education" class="hover:text-yellow-400 transition duration-300 relative nav-link">
+                    뜨거운 교육열
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                </a>
+                <a href="#contact" class="hover:text-yellow-400 transition duration-300 relative nav-link">
+                    간절한 연락처
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                </a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-700 pb-2">
+            <a href="#about" class="block px-4 py-2 text-sm text-white hover:bg-blue-600 nav-link">절박한 자기소개</a>
+            <a href="#education" class="block px-4 py-2 text-sm text-white hover:bg-blue-600 nav-link">뜨거운 교육열</a>
+            <a href="#contact" class="block px-4 py-2 text-sm text-white hover:bg-blue-600 nav-link">간절한 연락처</a>
+        </div>
+    </nav>
+
+    <header id="top" class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20 text-center shadow-2xl">
+        <!-- 배경 애니메이션 원 -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-yellow-400 opacity-20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute -bottom-40 right-0 w-96 h-96 bg-blue-400 opacity-30 rounded-full blur-2xl animate-ping"></div>
+        <div class="absolute top-1/2 left-1/2 w-1/2 h-1/2 bg-white opacity-5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <!-- 메인 컨텐츠 -->
+        <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-yellow-400 text-blue-900 font-bold rounded-full shadow-lg tracking-widest text-sm uppercase animate-bounce border-2 border-yellow-300">🔥 절박함의 끝판왕 🔥</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg leading-tight animate-[bounce_2s_infinite]">
+                <span class="bg-gradient-to-r from-yellow-400 via-white to-blue-400 bg-clip-text text-transparent">성실히 접근하는</span><br>
+                <span class="inline-block animate-pulse">박상우, 여기 있습니다!</span>
+            </h1>
+            <p class="text-2xl md:text-3xl font-light mt-4 text-yellow-200 max-w-2xl mx-auto drop-shadow">
+                이 기회를 <span class="font-bold text-yellow-400 underline underline-offset-4 decoration-wavy decoration-yellow-300 animate-pulse">놓치고 싶지 않습니다</span>.<br>
+                <span class="text-white font-semibold">제 모든 것을 걸고, 후회 없는 선택이었음을 증명하겠습니다!</span>
+            </p>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#about" class="px-8 py-3 bg-yellow-400 text-blue-900 font-bold rounded-full shadow-lg hover:bg-yellow-300 transition transform hover:-translate-y-1 hover:scale-105 border-2 border-yellow-300 text-lg animate-pulse">저를 더 알아보기</a>
+                <a href="#contact" class="px-8 py-3 bg-transparent border-2 border-yellow-400 text-yellow-300 font-bold rounded-full hover:bg-yellow-400 hover:text-blue-900 transition transform hover:-translate-y-1 hover:scale-105 text-lg">지금 연락하기</a>
+            </div>
+        </div>
+        <!-- 화살표 애니메이션 -->
+        <div class="absolute left-1/2 bottom-6 transform -translate-x-1/2 z-20">
+            <svg class="w-10 h-10 text-yellow-300 animate-bounce" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="py-16 md:py-24 border-b border-gray-200">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <h2 class="text-4xl font-bold text-blue-800 mb-8 text-center relative pb-4">
+                    담당자님, 제발 저의 열정을 믿어주십시오!
+                    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-yellow-500 rounded animate-ping"></span>
+                </h2>
+                <div class="text-lg leading-loose text-gray-700">
+                    <p class="mb-4">채용 담당자님, 이 웹사이트는 단순한 프로필이 아닙니다. 이 안에 **<span class="highlight">저 박상우의 지난 삶과 앞으로의 모든 것</span>**이 담겨 있습니다. 저는 이 자리에 서기 위해 제 자신을 수없이 깨부수고, 극한의 상황까지 밀어붙이며 성장해왔습니다. 소심했던 어린 시절을 넘어, 낯선 이들에게 먼저 다가서고, 최전방 GOP 근무까지 자원하며 끊임없이 저 자신을 단련했습니다. 어떠한 새로운 환경에도 **<span class="highlight">맨땅에 헤딩하듯 빠르게 적응</span>**하고, 주어진 역할 그 이상을 해내 기여할 준비가 되어있습니다.</p>
+                    <p class="mb-8">빠르게 변화하는 클라우드 산업 속에서 저 또한 능동적으로 변화하고 성장해왔습니다. 양주 클라우드 캠프에서 컴퓨팅, 네트워크, 보안 등 핵심 기술을 학습했고, AWS 기반의 실습 프로젝트를 통해 **<span class="highlight">밤낮없이 실무 역량을 쌓았습니다.</span>** 클라우드 기술이 가져올 효율성에 깊은 매력을 느꼈고, 귀사의 혁신적인 기술과 선구적인 비전에 제 모든 열정을 쏟아 붓고 싶습니다. **<span class="highlight">저를 채용하신다면, 그 어떤 기대에도 부응하고 후회 없는 선택이었음을 온몸으로 증명해 보이겠습니다!</span>**</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-800 mt-10 mb-4 border-b-2 border-yellow-500 pb-2 inline-block">저의 핵심 가치: 성실성, 자율성, 공정성 — 이것이 바로 저의 존재 이유입니다!</h3>
+                    <p class="mb-4">저는 다양한 현장 경험을 통해 <strong>‘성실성, 자율성, 공정성’</strong>이라는 세 가지 삶의 확고한 가치를 정립했습니다. 이 가치들은 제가 어떤 업무를 맡든, 어떤 환경에 처하든 흔들림 없이 **<span class="highlight">최고의 성과를 내는 저의 피와 땀</span>**이 될 것입니다.</p>
+                    <p class="mb-4">첫째, **성실성**은 제가 가장 중요하게 여기는 가치입니다. 신세계 백화점에서 창고 관리와 총무를 맡았을 때, 단순히 주어진 업무를 넘어 직원들의 불편 사항을 먼저 파악하고 선제적으로 해결했습니다. 삼성 화성 캠퍼스 씨앤에스(C&S)에서는 안전 규정을 철저히 준수하며 신입사원들의 모범이 되었습니다. 이러한 자세로 선임들의 신뢰를 얻었고, 안전사고 예방에도 기여할 수 있었습니다. **<span class="highlight">저는 이 성실함으로 귀사의 어떤 업무든 완벽하게 완수할 것을 숨 쉬듯 약속드립니다.</span>**</p>
+                    <p class="mb-4">둘째, **자율성**을 바탕으로 주도적으로 문제를 해결하는 역량을 키웠습니다. 씨앤에스 근무 당시, 기존에 없던 유형의 물류일보를 직접 만들어 설비 관리 효율을 높였습니다. 이는 단순히 지시를 따르는 것을 넘어, 현장의 문제를 스스로 찾아내고 개선점을 제시하는 **<span class="highlight">저의 타고난 능력을 보여줍니다.</span>** 클라우드 분야의 변화와 혁신 속에서, 저는 이러한 자율적이고 창의적인 태도로 귀사에 **<span class="highlight">새로운 역사를 쓸 준비가 되어있습니다.</span>**</p>
+                    <p class="mb-8">셋째, **공정성**을 실천하며 조직 내 신뢰를 쌓아왔습니다. 후임을 대할 때 개인적 친분보다 능력과 태도에 따라 공정하게 대우했습니다. 실수가 잦은 후임에게는 인내심으로 적응을 돕고, 규정 위반 시에는 원칙에 따라 엄정하게 지도했습니다. 이러한 공정한 태도는 팀워크를 강화하고, 모두가 신뢰할 수 있는 건강한 조직 문화를 만드는 데 기여했다고 자부합니다. **<span class="highlight">귀사의 팀에 합류하여 협력과 신뢰의 가치를 제가 직접 빛내 보이겠습니다!</span>**</p>
+                    <p class="mb-8">이처럼 저는 성실성, 자율성, 공정성을 바탕으로 쌓아온 경험과 태도를 클라우드 업무에 적극적으로 적용할 것입니다. 저는 변화에 빠르게 적응하고, 새로운 문제를 주도적으로 해결하며, 협업 과정에서 모두가 믿을 수 있는 인재가 될 준비가 되어있습니다. **<span class="highlight">저의 모든 역량과 에너지를 귀사를 위해 쏟아낼 준비가 되어있습니다!</span>**</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-800 mt-10 mb-4 border-b-2 border-yellow-500 pb-2 inline-block">경청하는 자세로 소통하고, 죽을 각오로 배우겠습니다</h3>
+                    <p class="mb-8">저의 가장 큰 강점은 타인의 이야기를 깊이 경청하는 자세입니다. 팀 프로젝트나 모임에서 다양한 의견을 수용하고 상대방의 입장을 이해하려 노력하여, 팀원들과의 신뢰를 쌓고 갈등 상황에서도 원만하게 해결해왔습니다. 꼼꼼하고 책임감 있는 성격으로 맡은 일은 **<span class="highlight">결코 포기하지 않고 끝까지 완수합니다.</span>**</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-800 mt-10 mb-4 border-b-2 border-yellow-500 pb-2 inline-block">저의 부족함은 성장의 연료이자 제가 가진 무기입니다!</h3>
+                    <p class="mb-8">반면, 저의 생각이나 의견을 길게 표현하는 데 미숙한 점이 단점입니다. 경청에 집중하다 보니 제 의견을 충분히 전달하지 못할 때도 있었습니다. 하지만 저는 이러한 단점을 극복하기 위해 **<span class="highlight">발표 수업을 듣고 웅변 학원에 다니며 스스로를 피 터지게 단련하고 있습니다.</span>** 부족한 점을 직시하고 끊임없이 개선하려는 노력이 바로 저의 또 다른 강점입니다. 저는 반드시 저의 생각을 명확하게 전달하는 능력을 길러, 귀사에서 **<span class="highlight">더욱 강력한 소통을 이끌어내겠습니다!</span>**</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-800 mt-10 mb-4 border-b-2 border-yellow-500 pb-2 inline-block">클라우드 아키텍트, 저의 비전이자 귀사의 미래입니다. 저에게 기회를 주십시오!</h3>
+                    <p class="mb-4">입사 후, 저는 클라우드 분야의 **<span class="highlight">최고 전문가로 성장하는 것을 제 삶의 목표</span>**로 삼고 있습니다. 귀사의 다양한 프로젝트에 적극 참여하여 실무 능력을 최고 수준으로 끌어올리고, 선배님들의 노하우를 스펀지처럼 흡수하며 빠르게 발전하겠습니다. 클라우드 인프라 구축, 운영, 보안 등 핵심 기술을 체계적으로 익혀 귀사의 성장에 **<span class="highlight">없어서는 안 될 핵심 중의 핵심 인재</span>**가 되겠습니다.</p>
+                    <p>나날이 변화하는 IT 환경에 발맞춰 최신 기술 트렌드를 매일같이 공부하고, 자격증 취득과 외부 세미나 참여 등 자기계발을 단 한 순간도 게을리하지 않을 것입니다. 장기적으로는 복잡한 시스템을 설계하고 고객에게 최적의 솔루션을 제공하는 클라우드 아키텍트 전문가가 되어, 귀사에 **<span class="highlight">압도적인 가치를 창출하는 사람이 되고자 합니다.</span>** **<span class="highlight">이 기회를 잡지 않으신다면, 분명 후회하실 겁니다! 저를 뽑아주십시오. 귀사의 성공에 저의 모든 것을 걸겠습니다!</span>**</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 md:py-24 bg-blue-50 border-b border-gray-200">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <h2 class="text-4xl font-bold text-blue-800 mb-8 text-center relative pb-4">
+                    제 교육은 짧지만, 열정은 뜨겁습니다!
+                    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-yellow-500 rounded animate-ping"></span>
+                </h2>
+                <ul class="space-y-6">
+                    <li class="bg-white p-6 rounded-lg shadow-md text-lg text-gray-700 highlight-edu-item">
+                        <strong class="text-blue-700">가천대학교 글로벌캠퍼스</strong> - 법학과 졸업
+                        <p class="text-sm mt-2 text-gray-600">이 지식 위에 기술을 쌓아 올렸습니다. 문과생의 열정 보여드리겠습니다다!</p>
+                    </li>
+                    <li class="bg-white p-6 rounded-lg shadow-md text-lg text-gray-700 highlight-edu-item">
+                        <strong class="text-blue-700">양주 클라우드 캠프</strong> 수료 (AWS 기반 실습 프로젝트 수행)
+                        <p class="text-sm mt-2 text-gray-600">Python, SQL, Linux 등등 배웠습니다. <br>밤샘하며 쌓은 실력입니다. 이제 실전에서 터트릴 기회를 주십시오!</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-blue-800 text-white py-12 text-center mt-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-yellow-500 mb-6 contact-cta">
+                당장 연락 주세요! 뼈 빠지게 기다리겠습니다...
+            </h2>
+            <p class="text-3xl mb-4 font-bold blink-text">
+                <strong>휴대폰:</strong> <a href="tel:010-9072-6968" class="text-yellow-400 hover:underline">010-9072-6968</a>
+            </p>
+            <p class="text-2xl mb-2 blink-text">
+                <strong>이메일:</strong> <a href="mailto:dbrldhr1918@naver.com" class="text-yellow-400 hover:underline">dbrldhr1918@naver.com</a>
+            </p>
+            <p class="text-2xl blink-text">
+                <a href="mailto:psu8736@gmail.com" class="text-yellow-400 hover:underline">psu8736@gmail.com</a>
+            </p>
+            <p class="mt-8 text-lg text-blue-200">
+                제발... 이 웹사이트가 당신의 마음을 움직이기를...
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤 기능
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // 모바일 메뉴 열려있으면 닫기
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // 모바일 메뉴 토글 기능
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
